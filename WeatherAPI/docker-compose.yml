@@ -1,0 +1,19 @@
+﻿version: '3.4'
+
+services:
+  web:
+    image: weather-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:5228"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: weatherDB
